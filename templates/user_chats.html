@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>用户聊天记录</title>
+</head>
+<body>
+    <h1>用户聊天记录</h1>
+    <ul>
+        {% for conv in conversations %}
+            <li>{{ conv.title }} - {{ conv.created_at }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('admin') }}">返回管理后台</a>
+</body>
+</html>

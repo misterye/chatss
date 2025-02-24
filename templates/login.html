@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+</head>
+<body>
+    <h1>登录</h1>
+    <form method="post">
+        {{ form.hidden_tag() }}  <!-- CSRF token -->
+        <label for="username">用户名:</label>
+        {{ form.username(id='username', required=True) }}<br>
+        <label for="password">密码:</label>
+        {{ form.password(id='password', required=True) }}<br>
+        {{ form.submit() }}
+    </form>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+</body>
+</html>
