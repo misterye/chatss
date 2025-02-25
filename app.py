@@ -95,10 +95,14 @@ def logout():
 def chat():
     conn = get_db()
     c = conn.cursor()
-    username = session.get('username')
+    
+    # 修正获取用户名的方式
+    c.execute("SELECT username FROM users WHERE id = ?", (session['user_id'],))
+    username = c.fetchone()[0]  # 直接获取用户名
+    
     current_chat_id = request.args.get('chat_id', None) or session.get('current_chat_id')
     chat_content = ''
-    chat = None  # 初始化 chat 变量
+    chat = None
 
     # 获取所有聊天记录
     c.execute("SELECT id, title, created_at FROM conversations WHERE user_id = ? ORDER BY created_at DESC",

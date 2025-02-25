@@ -222,22 +222,11 @@ function deleteChat(chatId) {
     }
 }
 
-// 自动滚动到最新消息
+// 自动滚动到底部
 function scrollToBottom() {
     const chatMessages = document.getElementById('chat-messages');
-    if (chatMessages) {
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-    }
+    chatMessages.scrollTop = chatMessages.scrollHeight;
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    scrollToBottom();
-    
-    // 监听表单提交
-    const messageForm = document.querySelector('form[method="post"]');
-    if (messageForm) {
-        messageForm.addEventListener('submit', () => {
-            setTimeout(scrollToBottom, 100);
-        });
-    }
-});
+// 页面加载完成后滚动到底部
+document.addEventListener('DOMContentLoaded', scrollToBottom);
